@@ -1,15 +1,24 @@
 'use strict';
 
 module.exports = function(server) {
-  // Install a `/` route that returns server status
+
+  var User = server.models.user;
+
   var router = server.loopback.Router();
-  router.get('/', spit, server.loopback.status());
+
+  router.get('/status', server.loopback.status());
+
+  router.get('/', function (req, res) {
+    res.render('home', { user: req.accessToken ? req.user : null });
+  });
+
+  router.get('/logout', function(req, res, next) {
+    if (!req.accessToken) return res.sendStatus(401);
+    User.logout(req.accessToken.id, function(err) {
+      if (err) return next(err);
+      res.redirect('/');
+    });
+  });
+
   server.use(router);
-
-  function spit(req, res, next) {
-    console.log('TOKEN', req.accessToken)
-    console.log('USER', req.user)
-    next()
-  }
-
 };

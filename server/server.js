@@ -7,6 +7,9 @@ var PassportConfigurator =
 
 var app = module.exports = loopback();
 
+app.set('views', __dirname + '/views');
+app.set('view engine', 'jade');
+
 app.start = function() {
   // start the web server
   return app.listen(function() {

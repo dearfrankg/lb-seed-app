@@ -1,0 +1,49 @@
+doctype html
+html(lang="en")
+  head
+    link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css')
+
+  body(style="padding: 30px;")
+
+    h1 Loopback social login example
+
+    if !user
+      ul.list-inline.list-unstyled
+        li
+          a.btn.btn-primary(href="/auth/facebook") Login with Facebook
+        li
+          a.btn.btn-primary(href="/auth/google") Login with Google
+
+    else
+      ul(style="list-style: none")
+        li
+          a.btn.btn-primary(href="/logout") Logout
+
+      .well
+        h4 Hello,
+        p username: #{user.username}
+        p email: #{user.email}
+
+      .well
+        h2 Third Party Profile(s)
+        p.small
+          if user.profiles.length !== 0
+            each val in user.profiles
+              h4= val.provider + ':'
+              p.small= JSON.stringify(val)
+          else
+            | NONE
+
+        h2 Linked Account(s)
+        ul.list-inline.list-unstyled
+          li
+            a.btn.btn-primary(href="/link/facebook") Link Facebook
+          li
+            a.btn.btn-primary(href="/link/google") Link Google
+        p.small
+          if user.accounts.length !== 0
+            each val in user.accounts
+              h4= val.provider + ':'
+              p.small= JSON.stringify(val)
+          else
+            | NONE
