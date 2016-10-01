@@ -1,0 +1,56 @@
+{
+  "facebook-login": {
+    "provider": "facebook",
+    "module": "passport-facebook",
+    "clientID": "1786492851564500",
+    "clientSecret": "95861926798114991c09a5cfe648023e",
+    "callbackURL": "http://localhost:3000/auth/facebook/callback",
+    "authPath": "/auth/facebook",
+    "callbackPath": "/auth/facebook/callback",
+    "successRedirect": "/",
+    "scope": ["public_profile"]
+  },
+  "google-login": {
+    "provider": "google",
+    "module": "passport-google-oauth",
+    "strategy": "OAuth2Strategy",
+    "clientID": "935207678590-vjd3vs5cq7aqdaa26abluq33shg4nu1l.apps.googleusercontent.com",
+    "clientSecret": "cgOwGk-vlI_UI6fmuIe-Uzm7",
+    "callbackURL": "http://localhost:3000/auth/google/callback",
+    "authPath": "/auth/google",
+    "callbackPath": "/auth/google/callback",
+    "successRedirect": "/",
+    "failureRedirect": "/",
+    "scope": ["email", "profile"],
+    "failureFlash": true
+  },
+  "facebook-link": {
+    "provider": "facebook",
+    "module": "passport-facebook",
+    "clientID": "1786492851564500",
+    "clientSecret": "95861926798114991c09a5cfe648023e",
+    "callbackURL": "http://localhost:3000/link/facebook/callback",
+    "authPath": "/link/facebook",
+    "callbackPath": "/link/facebook/callback",
+    "successRedirect": "/",
+    "failureRedirect": "/",
+    "scope": ["email", "user_likes"],
+    "link": true,
+    "failureFlash": true
+  },
+  "google-link": {
+    "provider": "google",
+    "module": "passport-google-oauth",
+    "strategy": "OAuth2Strategy",
+    "clientID": "935207678590-vjd3vs5cq7aqdaa26abluq33shg4nu1l.apps.googleusercontent.com",
+    "clientSecret": "cgOwGk-vlI_UI6fmuIe-Uzm7",
+    "callbackURL": "http://localhost:3000/link/google/callback",
+    "authPath": "/link/google",
+    "callbackPath": "/link/google/callback",
+    "successRedirect": "/",
+    "failureRedirect": "/",
+    "scope": ["email", "profile"],
+    "link": true,
+    "failureFlash": true
+  }
+}

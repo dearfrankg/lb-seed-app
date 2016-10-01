@@ -2,5 +2,15 @@
   "db": {
     "name": "db",
     "connector": "memory"
+  },
+  "dsMongoDB": {
+    "host": "localhost",
+    "port": 27017,
+    "url": "mongodb://localhost:27017/my-lb-social",
+    "database": "my-lb-social",
+    "password": "",
+    "name": "dsMongoDB",
+    "user": "",
+    "connector": "mongodb"
   }
 }

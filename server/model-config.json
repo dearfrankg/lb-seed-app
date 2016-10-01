@@ -13,23 +13,32 @@
       "./mixins"
     ]
   },
-  "User": {
-    "dataSource": "db"
+  "user": {
+    "dataSource": "dsMongoDB",
+    "public": true
   },
-  "AccessToken": {
-    "dataSource": "db",
+  "accessToken": {
+    "dataSource": "dsMongoDB",
+    "public": false
+  },
+  "userCredential": {
+    "dataSource": "dsMongoDB",
+    "public": false
+  },
+  "userIdentity": {
+    "dataSource": "dsMongoDB",
     "public": false
   },
   "ACL": {
-    "dataSource": "db",
+    "dataSource": "dsMongoDB",
     "public": false
   },
   "RoleMapping": {
-    "dataSource": "db",
+    "dataSource": "dsMongoDB",
     "public": false
   },
   "Role": {
-    "dataSource": "db",
+    "dataSource": "dsMongoDB",
     "public": false
   }
 }
