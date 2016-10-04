@@ -29,6 +29,9 @@
     "dataSource": "dsMongoDB",
     "public": false
   },
+  "Email": {
+    "dataSource": "emailDs"
+  },
   "ACL": {
     "dataSource": "dsMongoDB",
     "public": false

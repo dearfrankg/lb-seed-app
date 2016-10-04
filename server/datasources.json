@@ -12,5 +12,24 @@
     "name": "dsMongoDB",
     "user": "",
     "connector": "mongodb"
+  },
+  "emailDs": {
+    "name": "emailDs",
+    "connector": "mail",
+    "transports": [
+      {
+        "type": "smtp",
+        "host": "smtp.mailgun.org",
+        "secure": true,
+        "port": 465,
+        "tls": {
+          "rejectUnauthorized": false
+        },
+        "auth": {
+          "user": "postmaster@debugtime.com",
+          "pass": "56c965cd8e97610103099ec8b9b82946"
+        }
+      }
+    ]
   }
 }
