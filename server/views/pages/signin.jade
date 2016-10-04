@@ -1,0 +1,78 @@
+extends ../layouts/layout
+
+block content
+
+  style(type='text/css').
+    body {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+
+    .header {
+      padding-right: 15px;
+      padding-left: 15px;
+    }
+
+    .header {
+      padding-bottom: 20px;
+      border-bottom: 1px solid #e5e5e5;
+    }
+
+    .header h3 {
+      margin-top: 0;
+      margin-bottom: 0;
+      line-height: 40px;
+    }
+
+
+
+  div(style='margin: 0 auto;')
+    h1(style='text-align: center') GILT
+    .header.clearfix
+
+    div(style='margin: 0 auto; text-align: center; width: 300px;')
+
+      .caption(style='margin: 0 auto; text-align: center; width: 250px;')
+
+        p &nbsp;
+        h4
+          em Sign in to Gilt
+        p
+        form(role='form', action='/auth/local', method='post')
+
+          .form-group
+            input#username.form-control(type='text', name='username', placeholder='Enter username')
+          .form-group
+            input#password.form-control(type='password', name='password', placeholder='Password')
+
+          p
+            input#password.btn.btn-warning.btn-block(type='submit', name='submit')
+
+          .checkbox-inline
+              label
+              input(type='checkbox', name='remember')
+              | Remember Me
+
+          p
+          p
+            a(href='/forgot', role='button') forgot your password?
+
+          p
+
+          hr
+
+          p
+            a.btn.btn-primary.btn-block(href='/auth/facebook', role='button') Login with Facebook
+
+          p
+            a.btn.btn-primary.btn-block(href='/auth/google', role='button') Login with Google
+
+          p
+            span.
+              Not a member&nbsp;
+            a(href='/signup') Sign Up
+
+
+          if (messages.error)
+            p
+              span(style="color:red")= messages.error

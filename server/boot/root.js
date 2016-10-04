@@ -9,10 +9,22 @@ module.exports = function(server) {
   router.get('/status', server.loopback.status());
 
   router.get('/', function (req, res) {
-    res.render('home', { user: req.accessToken ? req.user : null });
+    res.render('pages/index', { user: req.accessToken ? req.user : null });
   });
 
-  router.get('/logout', function(req, res, next) {
+  router.get('/signup', function (req, res) {
+    res.render('pages/signup', { user: req.accessToken ? req.user : null });
+  });
+
+  router.post('/signup', function (req, res) {
+    res.render('pages/index', { user: req.accessToken ? req.user : null });
+  });
+
+  router.get('/signin', function (req, res) {
+    res.render('pages/signin', { user: req.accessToken ? req.user : null });
+  });
+
+  router.get('/signout', function(req, res, next) {
     if (!req.accessToken) return res.sendStatus(401);
     User.logout(req.accessToken.id, function(err) {
       if (err) return next(err);

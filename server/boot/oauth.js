@@ -1,10 +1,13 @@
 var PassportConfigurator =
   require('loopback-component-passport').PassportConfigurator;
+var flash = require('express-flash');
+var loopback = require('loopback');
 
 module.exports = function(app) {
   var passportConfigurator = new PassportConfigurator(app);
 
   passportConfigurator.init();
+  app.use(flash());
   passportConfigurator.setupModels({
     userModel: app.models.user,
     userIdentityModel: app.models.userIdentity,

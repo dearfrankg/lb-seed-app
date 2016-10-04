@@ -4,11 +4,19 @@ var loopback = require('loopback');
 var boot = require('loopback-boot');
 var PassportConfigurator =
   require('loopback-component-passport').PassportConfigurator;
+var bodyParser = require('body-parser');
 
 var app = module.exports = loopback();
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
+
+// to support JSON-encoded bodies
+app.middleware('parse', bodyParser.json());
+// to support URL-encoded bodies
+app.middleware('parse', bodyParser.urlencoded({
+  extended: true
+}));
 
 app.start = function() {
   // start the web server
