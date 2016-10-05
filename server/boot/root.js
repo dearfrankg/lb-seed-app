@@ -22,7 +22,6 @@ module.exports = function(server) {
     newUser.username = req.body.username.trim();
     newUser.password = req.body.password;
 
-    var User = server.models.user;
     User.create(newUser, function(err, user) {
       if (err) {
         req.flash('error', err.message);
@@ -54,6 +53,55 @@ module.exports = function(server) {
 
   router.get('/verified', function(req, res) {
     res.render('pages/verified');
+  });
+
+  router.get('/request-password-reset', function(req, res, next) {
+    res.render('pages/request-password-reset', {});
+  });
+
+  router.post('/request-password-reset', function(req, res, next) {
+    User.resetPassword({
+      email: req.body.email
+    }, function(err) {
+      if (err) return res.status(401).send(err);
+
+      res.render('pages/response', {
+        title: 'Password reset requested',
+        content: 'Check your email for further instructions',
+        redirectTo: '/',
+        redirectToLinkText: 'Log in'
+      });
+    });
+  });
+
+  router.get('/reset-password', function(req, res, next) {
+    res.render('pages/password-reset', {
+      accessToken: req.accessToken.id
+    });
+  });
+
+  router.post('/reset-password', function(req, res, next) {
+    if (!req.accessToken) return res.sendStatus(401);
+
+    //verify passwords match
+    if (!req.body.password ||
+        !req.body.confirmation ||
+        req.body.password !== req.body.confirmation) {
+      return res.sendStatus(400, new Error('Passwords do not match'));
+    }
+
+    User.findById(req.accessToken.userId, function(err, user) {
+      if (err) return res.sendStatus(404);
+      user.updateAttribute('password', req.body.password, function(err, user) {
+      if (err) return res.sendStatus(404);
+        res.render('pages/response', {
+          title: 'Password reset success',
+          content: 'Your password has been reset successfully',
+          redirectTo: '/',
+          redirectToLinkText: 'Log in'
+        });
+      });
+    });
   });
 
   function checkResObject(req, res, next) {

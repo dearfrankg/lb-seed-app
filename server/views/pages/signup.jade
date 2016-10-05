@@ -56,6 +56,7 @@ block content
             p &nbsp;
 
 
-            if (messages.error)
-              p
-                span(style="color:red")= messages.error
+    if (messages.error)
+      div.alert.alert-danger
+        p
+          span(style="color:red")= messages.error

@@ -1,0 +1,41 @@
+extends ../layouts/layout
+
+block content
+
+  style(type='text/css').
+    body {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+
+    .header {
+      padding-right: 15px;
+      padding-left: 15px;
+    }
+
+    .header {
+      padding-bottom: 20px;
+      border-bottom: 1px solid #e5e5e5;
+    }
+
+    .header h3 {
+      margin-top: 0;
+      margin-bottom: 0;
+      line-height: 40px;
+    }
+
+
+
+  div(style='margin: 0 auto;')
+    h1(style='text-align: center') #{title}
+    .header.clearfix
+
+    div.alert.alert-info
+      p
+        span(style="")= content
+
+
+    if (messages.error)
+      div.alert.alert-danger
+        p
+          span(style="color:red")= messages.error
